@@ -12,6 +12,22 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const savedContacts = localStorage.getItem('savedContacts');
+    if (savedContacts !== null) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem(
+        'savedContacts',
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
+
   addContact = newContact => {
     if (
       this.state.contacts.find(
@@ -30,6 +46,12 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
+  };
+
+  deleteAllContacts = () => {
+    this.setState({
+      contacts: [],
+    });
   };
 
   changeFilter = filterValue => {
@@ -53,6 +75,7 @@ export class App extends Component {
         <FilterBar
           filter={this.state.filter}
           onChangeFilter={this.changeFilter}
+          onDeleteAllContacts={this.deleteAllContacts}
         />
         <ContactList
           contacts={visibleContact}

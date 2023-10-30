@@ -1,11 +1,14 @@
-const FilterBar = ({ filter, onChangeFilter }) => {
+const FilterBar = ({ filter, onChangeFilter, onDeleteAllContacts }) => {
   return (
-    <input
-      placeholder="Filter"
-      type="text"
-      value={filter}
-      onChange={e => onChangeFilter(e.target.value)}
-    ></input>
+    <div>
+      <input
+        placeholder="Filter"
+        type="text"
+        value={filter}
+        onChange={e => onChangeFilter(e.target.value)}
+      ></input>
+      <button onClick={onDeleteAllContacts}>Delete all contacts</button>
+    </div>
   );
 };
 
