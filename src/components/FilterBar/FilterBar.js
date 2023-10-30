@@ -7,7 +7,7 @@ const FilterBar = ({ filter, onChangeFilter, onDeleteAllContacts }) => {
         value={filter}
         onChange={e => onChangeFilter(e.target.value)}
       ></input>
-      <button onClick={onDeleteAllContacts}>Delete All contacts</button>
+      <button onClick={onDeleteAllContacts}>Delete all contacts</button>
     </div>
   );
 };
